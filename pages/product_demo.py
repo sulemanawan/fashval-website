@@ -1,4 +1,8 @@
 import streamlit as st
+import requests
+
+# Set the API URL
+API_URL = 'https://fashval-x5mrnd2lfa-ew.a.run.app/predict'
 
 
 st.markdown('''
@@ -14,7 +18,6 @@ def load_options(file_path):
 '''
 ## Here we would like to add some controllers in order to ask the user to select the parameters
 '''
-# Load options from txt files
 brands = load_options('unique_values_txt_files/uv_brands.txt')
 materials = load_options('unique_values_txt_files/uv_materials.txt')
 conditions = load_options('unique_values_txt_files/uv_condition.txt')
@@ -25,10 +28,8 @@ categories = load_options('unique_values_txt_files/uv_category.txt')
 seasons = load_options('unique_values_txt_files/uv_season.txt')
 seller_badges = load_options('unique_values_txt_files/uv_seller_badge.txt')
 
-# Streamlit app layout
 st.title('Product Information')
 
-# Input field for product description
 product_description = st.text_input('Enter a short product description: ')
 
 # Drop-down menus for selections
@@ -42,20 +43,31 @@ category = st.selectbox('Select Category', categories)
 season = st.selectbox('Select Season', seasons)
 seller_badge = st.selectbox('Select Seller Badge', seller_badges)
 
-# Input field for number of products sold
 products_sold = st.number_input('Enter the number of products sold', min_value=0, step=1)
 
-# Button to submit the form
 if st.button('Submit'):
+    # Prepare data to send to the API
+    data = {
+        'description': product_description,
+        'material': material,
+        'brand': brand,
+        'condition': condition,
+        'shipping_time': shipping_time,
+        'gender_target': gender_target,
+        'color': color,
+        'category': category,
+        'season': season,
+        'seller_badge': seller_badge,
+        'products_sold': products_sold
+    }
 
-    st.write('Product Description:', product_description)
-    st.write('Material:', material)
-    st.write('Brand:', brand)
-    st.write('Condition:', condition)
-    st.write('Shipping Time:', shipping_time)
-    st.write('Gender Target:', gender_target)
-    st.write('Color:', color)
-    st.write('Category:', category)
-    st.write('Season:', season)
-    st.write('Seller Badge:', seller_badge)
-    st.write('Number of Products Sold:', products_sold)
+    # Make a POST request to the API
+    try:
+        response = requests.post(API_URL, data=data)
+        if response.status_code == 200:
+            predicted_price = response.json().get('predicted_price', 'No price returned')
+            st.success(f'The predicted price for the product is: ${predicted_price}')
+        else:
+            st.error('Error: Could not get a prediction from the API.')
+    except Exception as e:
+        st.error(f'Error occurred while making the API request: {e}')
