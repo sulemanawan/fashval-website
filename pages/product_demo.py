@@ -6,7 +6,7 @@ API_URL = 'https://fashval-x5mrnd2lfa-ew.a.run.app/predict'
 
 
 st.markdown('''
-#2nd Hand Fashion Evaluation
+# 2nd Hand Fashion Evaluation
 ## Sell you pre-owned luxury items at the optimal price!
 ''')
 
@@ -15,9 +15,7 @@ def load_options(file_path):
         options = [line.strip() for line in file]
     return options
 
-'''
-## Here we would like to add some controllers in order to ask the user to select the parameters
-'''
+
 brands = load_options('unique_values_txt_files/uv_brands.txt')
 materials = load_options('unique_values_txt_files/uv_materials.txt')
 conditions = load_options('unique_values_txt_files/uv_condition.txt')
@@ -33,41 +31,53 @@ st.title('Product Information')
 product_description = st.text_input('Enter a short product description: ')
 
 # Drop-down menus for selections
-material = st.selectbox('Select Material', materials)
-brand = st.selectbox('Select Brand', brands)
-condition = st.selectbox('Select Condition', conditions)
-shipping_time = st.selectbox('Select Shipping Time', shipping_days)
-gender_target = st.selectbox('Select Gender Target', genders)
-color = st.selectbox('Select Color', colors)
-category = st.selectbox('Select Category', categories)
-season = st.selectbox('Select Season', seasons)
+product_material = st.selectbox('Select Material', materials)
+brand_name = st.selectbox('Select Brand', brands)
+product_condition = st.selectbox('Select Condition', conditions)
+shipping_days = st.selectbox('Select Shipping Time', shipping_days)
+product_gender = st.selectbox('Select Gender Target', genders)
+product_color = st.selectbox('Select Color', colors)
+product_category = st.selectbox('Select Category', categories)
+product_season = st.selectbox('Select Season', seasons)
 seller_badge = st.selectbox('Select Seller Badge', seller_badges)
 
-products_sold = st.number_input('Enter the number of products sold', min_value=0, step=1)
+seller_products_sold = st.number_input('Enter the number of products sold', min_value=0, step=1)
 
 if st.button('Submit'):
     # Prepare data to send to the API
     data = {
-        'description': product_description,
-        'material': material,
-        'brand': brand,
-        'condition': condition,
-        'shipping_time': shipping_time,
-        'gender_target': gender_target,
-        'color': color,
-        'category': category,
-        'season': season,
+        'product_description': product_description,
+        'product_material': product_material,
+        'brand_name': brand_name,
+        'product_condition': product_condition,
+        'shipping_days': shipping_days,
+        'product_gender': product_gender,
+        'product_color': product_color,
+        'product_category': product_category,
+        'product_season': product_season,
         'seller_badge': seller_badge,
-        'products_sold': products_sold
+        'seller_products_sold': seller_products_sold
     }
 
+try:
+    response = requests.get(url = API_URL, params=data)
+    if response.status_code == 200:
+        predicted_price = response.json()['price']
+        st.success(f'The predicted price for the product is: ${predicted_price}')
+    else:
+        st.error('Error: Could not get a prediction from the API.')
+
+except Exception as e:
+    st.error(f'Error occurred while making the API request: {e}')
+
+
     # Make a POST request to the API
-    try:
-        response = requests.post(API_URL, data=data)
-        if response.status_code == 200:
-            predicted_price = response.json().get('predicted_price', 'No price returned')
-            st.success(f'The predicted price for the product is: ${predicted_price}')
-        else:
-            st.error('Error: Could not get a prediction from the API.')
-    except Exception as e:
-        st.error(f'Error occurred while making the API request: {e}')
+    #try:
+        #response = requests.post(API_URL, data=data)
+        #if response.status_code == 200:
+            #predicted_price = response.json().get('predicted_price', 'No price returned')
+            #st.success(f'The predicted price for the product is: ${predicted_price}')
+        #else:
+            #st.error('Error: Could not get a prediction from the API.')
+    #except Exception as e:
+        #st.error(f'Error occurred while making the API request: {e}')
