@@ -1,7 +1,7 @@
 # .streamlit/theme.toml
 
 [theme]
-primaryColor = "#d4af37"  # Gold for primary elements like buttons and headers
-backgroundColor = "#333333"  # Very dark grey for the background
-secondaryBackgroundColor = "#444444"  # Slightly lighter grey for secondary elements
-textColor = "#ffffff"  # White for text
+primaryColor = "#BEBEBC"  # Grey for primary elements like buttons and headers
+backgroundColor = "#94806B"  #brown
+secondaryBackgroundColor = "#D4C9BA"  # beige
+textColor = "#94806B"  # brown
