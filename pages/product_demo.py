@@ -124,10 +124,6 @@ st.markdown('''
         margin-bottom: -80px; /* Space between title and field */
         line-height: 1; /* Adjust line height if needed */
     }
-    /* Hide labels for select boxes */
-    .stSelectbox > div > label {
-        display: none !important;
-    }
 
     /* Hide labels for number inputs */
     .stNumberInput > div > label {
