@@ -7,6 +7,14 @@ API_URL = 'https://fashval-x5mrnd2lfa-ew.a.run.app/predict'
 # Define custom colors
 
 
+hide_default_format = """
+       <style>
+       #MainMenu {visibility: hidden; }
+       footer {visibility: hidden;}
+       </style>
+       """
+st.markdown(hide_default_format, unsafe_allow_html=True)
+
 def load_options(file_path):
     with open(file_path, 'r') as file:
         options = [line.strip() for line in file]
