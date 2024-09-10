@@ -32,6 +32,8 @@ seasons = load_options('unique_values_txt_files/uv_season.txt')
 seller_badges = load_options('unique_values_txt_files/uv_seller_badge.txt')
 
 # Apply custom CSS styles
+
+# Apply custom CSS styles
 st.markdown('''
     <style>
     body {
@@ -42,6 +44,7 @@ st.markdown('''
     .stTextInput>div>input {
         background-color: #444444 !important;
         border: 1px solid #555555 !important;
+        font-size: 24px;
         color: #ffffff !important;
     }
     .stSelectbox>div>div {
@@ -56,7 +59,7 @@ st.markdown('''
         background-color: #b08d57 !important;
         color: #ffffff !important;
         border: 2px solid #555555 !important;
-        font-size: 16px;
+        font-size: 20px;
         font-weight: bold;
         border-radius: 5px;
         padding: 10px 20px;
@@ -83,8 +86,21 @@ st.markdown('''
     </div>
     ''', unsafe_allow_html=True)
 
+# Info section with inline CSS for text styling
+st.markdown(
+    '<p style="font-size:20px; color:white;">Want to know how much your barely used luxury items are worth?</p>',
+    unsafe_allow_html=True
+)
+st.markdown(
+    '<p style="font-size:20px; color:white;">Give us some information about your item and we will answer this question for you!</p>',
+    unsafe_allow_html=True
+)
+
 # Page title
-st.title('Product Information')
+st.markdown(
+    '<h1 style="font-size:36px; color:white;">Product Information</h1>',
+    unsafe_allow_html=True
+)
 
 product_description = st.text_input('Enter a short product description: ')
 if not product_description:
