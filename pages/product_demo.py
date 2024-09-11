@@ -86,10 +86,6 @@ st.markdown('''
         color: #7F7F7F !important;
     }
 
-    /* Debug styles */
-    .stTextArea textarea {
-        border: 2px solid red !important; /* Debug border */
-    }
 
     /* Style for the container of the number input */
     .st-emotion-cache-1e043ys.e116k4er3 {
