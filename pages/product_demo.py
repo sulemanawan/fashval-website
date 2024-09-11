@@ -42,6 +42,7 @@ st.markdown("""
     </style>""", unsafe_allow_html=True)
 
 # Apply custom CSS styles
+
 st.markdown('''
 <style>
     body {
@@ -50,87 +51,118 @@ st.markdown('''
         padding: 0;
     }
     .stApp {
-        max-width: 80% !important; /* Limit the width of the entire app */
-        margin: 0 auto; /* Center the content */
-        padding: 20px; /* Add padding around the content */
-    }
-    .stSelectbox>div>div {
-        width: 100% !important;
-        height: 60px !important; /* Consistent height for select boxes */
-        padding: 10px; /* Padding inside the select boxes */
-        background-color: #D4C9BA !important;
-        border: 1px solid #555555 !important;
-        color: #94806B !important; /* Correct text color */
-        font-size: 20px !important;
-        box-sizing: border-box;
-        margin-bottom: 20px; /* Space between fields */
-    }
-    /* Style for the dropdown options when the dropdown is expanded */
-    .stSelectbox > div > div > div {
-        background-color: #D4C9BA !important;  /* Options background color */
-        color: #94806B !important;  /* Options text color */
+        max-width: 80% !important;
+        margin: 0 auto;
+        padding: 20px;
     }
 
-    /* Style for the dropdown arrow */
-    .stSelectbox > div > div > svg {
-        color: #94806B !important;  /* Arrow color */
-    }
-
-    /* Style for the dropdown options on hover */
-    .stSelectbox > div > div > div > div:hover {
-        background-color: #BEBEBC !important;  /* Hover background color */
-        color: #94806B !important;  /* Hover text color */
-    }
-
-
-    .stTextInput>div>textarea::placeholder {
-        font-size: 20px !important;  /* Change this value to your desired font size */
-        color: #7F7F7F !important;   /* Optional: Change placeholder color if needed */
-    }
-
-    .stNumberInput>div {
+    /* General Selectbox Styling */
+    .stSelectbox>div {
         width: 100% !important;
         height: 60px !important;
-        padding: 10px;
-        background-color: #D4C9BA !important;
-        border: 1px solid #555555 !important;
-        color: #94806B !important;
-        font-size: 20px !important;
-        box-sizing: border-box;
+        background-color: #D4C9BA !important; /* Beige background */
+        border: 1px solid #94806B !important;
+        padding: 10px !important;
+        height: 60px !important; /* Set consistent height */
+        font-size: 18px !important;
         margin-bottom: 20px;
+        border-radius: 10px !important;
     }
 
-    .stButton>button {
-        background-color: #D4C9BA !important;
-        color: #ffffff !important;
-        border: 2px solid #555555 !important;
-        font-size: 30px !important;
-        font-weight: bold;
-        border-radius: 5px;
-        padding: 12px 24px;
+    /* Style for text area container */
+    .stTextArea textarea {
+        font-size: 22px !important;
+        color: #7F7F7F !important;
+        padding: 10px !important;
+        box-sizing: border-box;
+        line-height: 1.5 !important;
+        border: 2px solid #94806B !important; /* Border color */
+        border-radius: 10px !important; /* Rounded corners */
+    }
+
+    /* Style for placeholder text */
+    .stTextArea textarea::placeholder {
+        font-size: 22px !important;
+        color: #7F7F7F !important;
+    }
+
+    /* Debug styles */
+    .stTextArea textarea {
+        border: 2px solid red !important; /* Debug border */
+    }
+
+    /* Style for the container of the number input */
+    .st-emotion-cache-1e043ys.e116k4er3 {
+        border: 1px solid #94806B !important; /* Border color */
+        border-radius: 10px !important; /* Rounded corners */
+        background-color: #D4C9BA !important; /* Background color */
+        padding: 10px !important; /* Padding */
+        height: 60px;
+    }
+
+    /* Style for the number input field itself */
+    .st-be.st-cg.st-db.st-dc.st-dd.st-de.st-ch.st-cj.st-ci.st-ck.st-cl.st-b9.st-df.st-cb.st-bh.st-dg.st-c4.st-c5.st-c6.st-c7.st-ae.st-af.st-ag.st-bd.st-ai.st-aj.st-bs.st-dl.st-dm {
+        border: none !important; /* Remove default border if needed */
+        background-color: transparent !important; /* Transparent background */
+        color: #94806B !important; /* Text color */
+        font-size: 24px !important; /* Font size */
+        height: 60px;
+    }
+
+    /* Style for the step buttons */
+    .st-emotion-cache-76z9jo.e116k4er2 {
+        display: flex;
+        height: 100%;
+        font-size: 24px;
+        flex-direction: row;
+    }
+
+    /* Style for the step buttons */
+    .st-emotion-cache-44e0oq.e116k4er1 {
+        border: none !important;
+        background-color: #D4C9BA !important; /* Match background color */
+        height: 100% !important; /* Make buttons fill half the container height */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 !important; /* Remove padding */
         cursor: pointer;
     }
-    .stButton>button:hover {
-        background-color: #8c6c4f !important;
+
+    .st-emotion-cache-44e0oq.e116k4er1 {
+        border: none !important;
+        background-color: transparent !important;
     }
+
+    button.st-emotion-cache-s5ekhb.ef3psqc8 {
+        background-color: #B4A069 !important;
+        color: #ffffff !important;
+        border: 2px solid #94806B !important;
+        font-weight: bold;
+        border-radius: 5px;
+        padding: 15px 20px !important;
+        margin-bottom: 20px !important;
+        cursor: pointer;
+    }
+    .stButton>button {
+        font-size: 30px !important;
+        padding: 15px 20px !important; /* Adjust padding if needed */
+    }
+
     .header {
         text-align: center;
         color: #d4af37 !important;
-        margin-bottom: 20px; /* Corrected margin */
+        margin-bottom: 20px;
     }
     .title {
         font-size: 20px;
         color: #ffffff;
-        margin-bottom: -80px; /* Space between title and field */
-        line-height: 1; /* Adjust line height if needed */
-    }
-
-    /* Hide labels for number inputs */
-    .stNumberInput > div > label {
-        display: none !important;
+        margin-bottom: -80px;
+        line-height: 1;
     }
 </style>
 ''', unsafe_allow_html=True)
+
 
 # Header
 st.markdown('''
@@ -156,7 +188,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-with st.container():
+with st.form("my_form"):
     # Adjusting layout for product description
     st.markdown('<p class="title">Product Description:</p>', unsafe_allow_html=True)
     product_description = st.text_area('', placeholder='Enter a short product description here...', height=100)
@@ -164,7 +196,7 @@ with st.container():
         st.warning('Please enter a product description.')
 
     # Split remaining input fields across two columns
-    col1, col2 = st.columns(2)  # Equal column widths
+    col1, col2 = st.columns([1,1])  # Equal column widths
 
     with col1:
         st.markdown('<p class="title">Select Material:</p>', unsafe_allow_html=True)
@@ -180,7 +212,7 @@ with st.container():
         shipping_days = st.selectbox('', shipping_days)
 
         st.markdown('<p class="title">Enter the number of products sold:</p>', unsafe_allow_html=True)
-        seller_products_sold = st.number_input('', min_value=0, step=1)
+        seller_products_sold = st.number_input('', min_value=0, step=1, key='number_input')
 
     with col2:
         st.markdown('<p class="title">Select Target Gender:</p>', unsafe_allow_html=True)
@@ -198,8 +230,13 @@ with st.container():
         st.markdown('<p class="title">Select Seller Badge:</p>', unsafe_allow_html=True)
         seller_badge = st.selectbox('', seller_badges)
 
+
+    submit_button = st.form_submit_button(label="Submit")
+
+
+
     # Submit button
-    if st.button('Submit'):
+    if submit_button:
         # Validate that all necessary fields are filled
         if not product_description:
             st.warning('Please enter a product description.')

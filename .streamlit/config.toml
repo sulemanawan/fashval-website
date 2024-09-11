@@ -2,6 +2,11 @@
 
 [theme]
 primaryColor = "#BEBEBC"  # Grey for primary elements like buttons and headers
-backgroundColor = "#94806B"  #brown
+backgroundColor = "#a1907e"  #brown
 secondaryBackgroundColor = "#D4C9BA"  # beige
-textColor = "#94806B"  # brown
+textColor = "#82705e"  # brown
+
+[theme.selectbox]
+backgroundColor = "#D4C9BA"  # Beige for select box backgrounds
+secondaryBackgroundColor = "#D4C9BA"  # beige
+textColor = "#94806B"  # Brown for select box text
